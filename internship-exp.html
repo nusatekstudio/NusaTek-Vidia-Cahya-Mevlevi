@@ -169,7 +169,7 @@
                 >
                     <li>
                         <a
-                            href="index.html#about"
+                            href="index.html#educations"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                             :class="s==='about'?'on !text-zinc-900 dark:!text-white':''"
                             >Education</a
@@ -177,9 +177,9 @@
                     </li>
                     <li>
                         <a
-                            href="index.html#services"
+                            href="index.html#skills"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
-                            :class="s==='services'?'on !text-zinc-900 dark:!text-white':''"
+                            :class="s==='skills'?'on !text-zinc-900 dark:!text-white':''"
                             >Skills</a
                         >
                     </li>
@@ -193,15 +193,15 @@
                     </li>
                     <li>
                         <a
-                            href="index.html#reviews"
+                            href="index.html#certificates"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
-                            :class="s==='reviews'?'on !text-zinc-900 dark:!text-white':''"
+                            :class="s==='certificates'?'on !text-zinc-900 dark:!text-white':''"
                             >Certifications</a
                         >
                     </li>
                     <li>
                         <a
-                            href="index.html#blog"
+                            href="index.html#cv"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                             :class="s==='blog'?'on !text-zinc-900 dark:!text-white':''"
                             >Curriculum Vitae</a
@@ -481,6 +481,59 @@
                     </div>
                 </div>
             </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 gap-6 items-stretch">
+                        <div
+                            class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden h-full"
+                        >
+                            <div
+                                class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                            ></div>
+                            <div
+                                class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                            ></div>
+                            <div class="relative z-10">
+                                <div class="w-fit mx-auto">
+                                    <h2
+                                        class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                    >
+                                        16 UIN Jakarta Students Undergo KKN Program in Japan, Forming Cultural Diplomacy Facilities
+                                    </h2>
+                                    <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                        Liputan6.com, Jakarta A total of 16 students from the Syarif Hidayatullah State Islamic University (UIN) Jakarta carried out it Real Work Lectures (KKN) in Japan from 1 to 25 August 2025. This activity took place in five cities, namely Ibaraki, Nagano, Fukuoka, Notogawa and Hokkaido.
+                                        Of the total participants, 10 were female and 6 male students. Around 4 of them came from the International Relations (HI) Study Program, namely Alithya Zahra Raihani, Vidia Cahya Mevlevi, and Madarina Azharan who served in the cities of Ibaraki and Filzah Aisyah Azhar in the city of Nagano.
+                                    </p>
+                                </div>
+                                <a
+                                    href="https://www.liputan6.com/news/read/6145419/16-mahasiswa-uin-jakarta-jalani-program-kkn-di-jepang-bentuk-sarana-diplomasi-budaya"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 text-accent font-medium hover:text-accent-light transition-colors nav-link"
+                                    >Read more &rarr;</a
+                                >
+                            </div>
+                        </div>
+                        <article
+                            class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                        >
+                            <button
+                                type="button"
+                                @click="lightbox = liputan6Photo"
+                                class="block photo-frame w-full flex-1 min-h-[22rem] cursor-zoom-in"
+                                aria-label="View Liputan6 news photo fullscreen"
+                            >
+                                <img
+                                    src="images/liputan6.webp"
+                                    alt="16 UIN Jakarta Students Undergo KKN Program in Japan, Forming Cultural Diplomacy Facilities"
+                                    loading="lazy"
+                                />
+                            </button>
+                        </article>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <div
@@ -665,6 +718,12 @@
                             img: "images/kkn jepang/web/IMG_3741.jpg",
                         }
                     ],
+
+                    liputan6Photo: {
+                        id: 201,
+                        title: "16 UIN Jakarta Students Undergo KKN Program in Japan, Forming Cultural Diplomacy Facilities",
+                        img: "images/liputan6.webp",
+                    },
 
                     get visibleCount() {
                         if (this.filter === "all")

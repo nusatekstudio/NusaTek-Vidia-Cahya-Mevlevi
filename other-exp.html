@@ -169,14 +169,14 @@
                 >
                     <li>
                         <a
-                            href="index.html#about"
+                            href="index.html#educations"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                             >Education</a
                         >
                     </li>
                     <li>
                         <a
-                            href="index.html#services"
+                            href="index.html#skills"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                             >Skills</a
                         >
@@ -190,14 +190,14 @@
                     </li>
                     <li>
                         <a
-                            href="index.html#reviews"
+                            href="index.html#certificates"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                             >Certifications</a
                         >
                     </li>
                     <li>
                         <a
-                            href="index.html#blog"
+                            href="index.html#cv"
                             class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
                             >Curriculum Vitae</a
                         >
@@ -334,7 +334,7 @@
                         Home
                     </a>
                     <div
-                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden w-fit max-w-full mx-auto"
                     >
                         <div
                             class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
@@ -347,18 +347,18 @@
                                 <h2
                                     class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
                                 >
-                                    Indonesian Dance Festival (IDF)
+                                    Yayasan Sayap Ibu – Bintaro
                                 </h2>
                                 <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
-                                    Welcomed and assisted guests throughout the event to create a friendly and professional first impression.
-                                    Provided clear information regarding the event schedule, venue layout, and programme of activities to visitors.
-                                    Coordinated with the event team on seating arrangements and guest flow to ensure the event ran smoothly and in an orderly manner.
+                                    Assisted with social activities and mentoring of children under the foundation's care.
+                                    Participated in educational activities and character development for children with disabilities.
+                                    Supported the operational needs of the foundation's activities as required in the field.
                                 </p>
                             </div>
                             <a
                                 href=""
                                 class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-                                >Usher Division (November 2024)</a
+                                >Volunteer (December 2024)</a
                             >
                         </div>
                     </div>
@@ -368,7 +368,7 @@
             <section class="pb-24">
                 <div class="max-w-6xl mx-auto px-6">
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <template x-for="p in idfPhotos" :key="p.id">
+                        <template x-for="p in sayapIbuPhotos" :key="p.id">
                             <div>
                                 <article
                                     class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
@@ -408,19 +408,18 @@
                                 <h2
                                     class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
                                 >
-                                    International Relations Cultural Fair 2023 – Faculty of Social and Political Sciences, UIN Jakarta
+                                    FISIP Days – Faculty of Social and Political Sciences, UIN Jakarta
                                 </h2>
                                 <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
-                                    Managed social media content design planning for the International Relations Cultural Fair.
-                                    Prepared the Instagram content timeline for the @irculturalfair account.
-                                    Carried out documentation throughout the event.
-                                    Developed marketing strategies to support event promotion.
+                                    Served as the main liaison between the committee, participants, and speakers.
+                                    Coordinated schedules, technical requirements, and speaker needs.
+                                    Assisted with the registration process and provided event information to participants.
                                 </p>
                             </div>
                             <a
                                 href=""
                                 class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-                                >Design and Social Media Division (March 2023 – April 2023)</a
+                                >Liaison Officer (LO) Division (November 2024 – December 2024)</a
                             >
                         </div>
                     </div>
@@ -430,7 +429,68 @@
             <section class="pb-24">
                 <div class="max-w-6xl mx-auto px-6">
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <template x-for="p in icf2023Photos" :key="p.id">
+                        <template x-for="p in fisipDaysPhotos" :key="p.id">
+                            <div>
+                                <article
+                                    class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="lightbox = p"
+                                        class="block photo-frame w-full aspect-[3/4] cursor-zoom-in"
+                                        :aria-label="'View ' + p.title + ' fullscreen'"
+                                    >
+                                        <img
+                                            :src="p.img"
+                                            :alt="p.title"
+                                            loading="lazy"
+                                        />
+                                    </button>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden w-fit max-w-full mx-auto"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    Indonesian Dance Festival (IDF)
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Welcomed and assisted guests throughout the event to create a friendly and professional first impression.
+                                    Provided clear information regarding the event schedule, venue layout, and programme of activities to visitors.
+                                    Coordinated with the event team on seating arrangements and guest flow to ensure the event ran smoothly and in an orderly manner.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Usher Division (November 2024)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in idfPhotos" :key="p.id">
                             <div>
                                 <article
                                     class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
@@ -531,18 +591,18 @@
                                 <h2
                                     class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
                                 >
-                                    FISIP Days – Faculty of Social and Political Sciences, UIN Jakarta
+                                    Event Committee - Teater Syahid, Taman Ismail Marzuki (TIM)
                                 </h2>
                                 <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
-                                    Served as the main liaison between the committee, participants, and speakers.
-                                    Coordinated schedules, technical requirements, and speaker needs.
-                                    Assisted with the registration process and provided event information to participants.
+                                    Planned and coordinated event schedules to support the smooth execution of theater performances and supporting activities.
+                                    Collaborated with performers, production teams, and committee members to manage event flow and program arrangements.
+                                    Assisted in developing event concepts and coordinating on-site operations to ensure activities were conducted effectively.
                                 </p>
                             </div>
                             <a
                                 href=""
                                 class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-                                >Liaison Officer (LO) Division (November 2024 – December 2024)</a
+                                >Program Division (June 2023 – November 2023)</a
                             >
                         </div>
                     </div>
@@ -552,7 +612,7 @@
             <section class="pb-24">
                 <div class="max-w-6xl mx-auto px-6">
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <template x-for="p in fisipDaysPhotos" :key="p.id">
+                        <template x-for="p in teaterTimPhotos" :key="p.id">
                             <div>
                                 <article
                                     class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
@@ -592,51 +652,19 @@
                                 <h2
                                     class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
                                 >
-                                    Interfest – Faculty of Social and Political Sciences, UIN Jakarta
+                                    International Relations Cultural Fair 2023 – Faculty of Social and Political Sciences, UIN Jakarta
                                 </h2>
                                 <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
-                                    Planned the event theme, objectives, and concept in line with the intended targets.
-                                    Determined the date, time, and venue of the event, and arranged the schedule for the entire series of activities, sessions, and presentations.
+                                    Managed social media content design planning for the International Relations Cultural Fair.
+                                    Prepared the Instagram content timeline for the @irculturalfair account.
+                                    Carried out documentation throughout the event.
+                                    Developed marketing strategies to support event promotion.
                                 </p>
                             </div>
                             <a
                                 href=""
                                 class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-                                >Event Planner – Ambassador of International Relations (August 2024 – October 2024)</a
-                            >
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="pb-24">
-                <div class="max-w-6xl mx-auto px-6">
-                    <div
-                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
-                    >
-                        <div
-                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
-                        ></div>
-                        <div
-                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
-                        ></div>
-                        <div class="relative z-10">
-                            <div class="w-fit mx-auto">
-                                <h2
-                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
-                                >
-                                    Yayasan Sayap Ibu – Bintaro
-                                </h2>
-                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
-                                    Assisted with social activities and mentoring of children under the foundation's care.
-                                    Participated in educational activities and character development for children with disabilities.
-                                    Supported the operational needs of the foundation's activities as required in the field.
-                                </p>
-                            </div>
-                            <a
-                                href=""
-                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
-                                >Volunteer (December 2024)</a
+                                >Design and Social Media Division (March 2023 – April 2023)</a
                             >
                         </div>
                     </div>
@@ -646,7 +674,7 @@
             <section class="pb-24">
                 <div class="max-w-6xl mx-auto px-6">
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <template x-for="p in sayapIbuPhotos" :key="p.id">
+                        <template x-for="p in icf2023Photos" :key="p.id">
                             <div>
                                 <article
                                     class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
@@ -803,6 +831,17 @@
                         id: 400 + i,
                         title: "FISIP Days – Faculty of Social and Political Sciences, UIN Jakarta",
                         img: "images/fisip days/web/" + f + ".jpg",
+                    })),
+
+                    teaterTimPhotos: [
+                        "IMG_3018",
+                        "IMG_3019",
+                        "IMG_3020",
+                        "IMG_3021",
+                    ].map((f, i) => ({
+                        id: 600 + i,
+                        title: "Event Committee - Teater Syahid, Taman Ismail Marzuki (TIM)",
+                        img: "images/teater TIM/web/" + f + ".jpg",
                     })),
 
                     sayapIbuPhotos: [
