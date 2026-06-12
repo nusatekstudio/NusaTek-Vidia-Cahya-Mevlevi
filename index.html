@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" x-data="app()" class="scroll-smooth dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Eliott — Freelance UI/UX Designer and Frontend Developer. Fast, clean and accessible digital products.">
+<meta name="keywords" content="freelance developer, UI designer, portfolio, Tailwind CSS, Alpine.js">
+<meta name="author" content="Eliott">
+<meta property="og:title" content="Eliott — Freelance UI/UX Designer">
+<meta property="og:description" content="I design and build digital products that people love to use.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eliott.dev">
+<title>Portofolio Vidia Cahya Mevlevi</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['PT Sans','sans-serif'], body: ['DM Sans','sans-serif'] },
+      colors: { accent: '#FF6B2B', 'accent-light': '#FF8F5C' }
+    }
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{font-family:'DM Sans',sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif}
+body{transition:background-color .3s,color .3s}
+
+/* noise overlay */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.35;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E")}
+
+/* scrollbar */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#FF6B2B;border-radius:99px}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* nav underline animation */
+.nl{position:relative}
+.nl::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .22s cubic-bezier(.4,0,.2,1)}
+.nl:hover::after,.nl.on::after{width:100%}
+.nl.on{font-weight:500}
+
+/* shimmer button */
+.shimmer{position:relative;overflow:hidden}
+.shimmer::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1)}
+.shimmer:hover::after{left:160%}
+
+/* photo frames */
+.pf{overflow:hidden;background:#d4d4d8}
+.pf img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* card hover */
+.card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s}
+.card-h:hover{transform:translateY(-4px)}
+
+/* skill tag */
+.stag{transition:border-color .18s}
+
+[x-cloak]{display:none!important}
+</style>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased">
+
+<!-- ═══ NAV ═══ -->
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+  :class="sc?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':''">
+  <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+
+    <a href="#hero" class="font-display font-bold text-xl tracking-tight relative z-10">
+      <span class="text-zinc-900 dark:text-white">Portofolio</span>  <span class="text-accent">Vidia Cahya Mavlevi</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm" role="list">
+      <li><a href="#about"   class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='about'?'on !text-zinc-900 dark:!text-white':''">Education</a></li>
+      <li><a href="#services" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='services'?'on !text-zinc-900 dark:!text-white':''">Skills</a></li>
+      <li><a href="#work"     class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='work'?'on !text-zinc-900 dark:!text-white':''">Experience</a></li>
+      <li><a href="#reviews" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='reviews'?'on !text-zinc-900 dark:!text-white':''">Certifications</a></li>
+      <li><a href="#blog"    class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='blog'?'on !text-zinc-900 dark:!text-white':''">Curriculum Vitae</a></li>
+      <li><a href="#contact" class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors" :class="s==='contact'?'on !text-zinc-900 dark:!text-white':''">Social Media</a></li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <!-- hire me -->
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 shimmer bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">
+        Hire me <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <!-- hamburger -->
+      <button @click="mm=!mm" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" :aria-expanded="mm" aria-label="Toggle menu">
+        <svg x-show="!mm" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mm"  class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- mobile menu -->
+  <div x-show="mm" x-cloak
+    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+    class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+    <ul class="flex flex-col px-6 py-5 gap-4 text-sm font-medium" role="list">
+      <li><a href="#work"     @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Education</a></li>
+      <li><a href="#services" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Skills</a></li>
+      <li><a href="#about"   @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Experience</a></li>
+      <li><a href="#reviews" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Certifications</a></li>
+      <li><a href="#blog"    @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Curriculum Vitae</a></li>
+      <li><a href="#contact" @click="mm=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors">Social Media</a></li>
+      <li class="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+        <a href="#contact" @click="mm=false" class="inline-flex shimmer bg-accent text-white font-medium text-sm px-5 py-2.5 rounded-full">Hire me →</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+  <div class="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+  <div class="absolute bottom-1/4 left-0 w-64 h-64 bg-zinc-200/50 dark:bg-zinc-800/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <div>
+        <h1 class="reveal d1 font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-zinc-900 dark:text-white mb-6">
+          Hello, I'm <span class="text-accent">Vidia Cahya Mevlevi</span>
+        </h1>
+<p class="reveal d2 text-lg md:text-xl text-zinc-500 dark:text-zinc-400 font-light leading-relaxed max-w-lg mb-10 text-justify">
+  Experienced in <strong class="font-semibold text-zinc-700 dark:text-zinc-300">international partnership administration</strong> and
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">program coordination</strong>, with a strong focus on
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">document management</strong>,
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">cross-cultural communication</strong>, and
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">institutional activity support.</strong>
+  Proven experience in managing <strong class="font-semibold text-zinc-700 dark:text-zinc-300">bilateral cooperation initiatives</strong> at
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">BRIN</strong> (National Research and Innovation Agency of Indonesia) as well as participating in
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">international community programs in Japan</strong>.
+  Skilled at fostering collaboration among diverse stakeholders, coordinating administrative processes, and ensuring smooth execution of
+  <strong class="font-semibold text-zinc-700 dark:text-zinc-300">international projects and events</strong>.
+</p>
+        <div class="reveal d3 flex flex-wrap gap-4">
+          <a href="#work" class="shimmer inline-flex items-center gap-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors text-sm">
+            View my experience
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-2 border border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium px-7 py-3.5 rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-sm">Get in touch</a>
+        </div>
+
+<div class="reveal d4 mt-14 pt-8 border-t border-zinc-100 dark:border-zinc-900">
+
+  <!-- Judul -->
+  <p class=" reveal font-display font-bold text-4xl text-zinc-900 dark:text-orange-500 mb-6">
+  </p>
+
+  <!-- Isi -->
+  <div class="flex flex-wrap gap-8">
+    <div>
+      <p class="font-display font-bold text-lg text-zinc-900 dark:text-white">
+      </p>
+    </div>
+
+    <div>
+      <p class="font-display font-bold text-lg text-zinc-900 dark:text-white">
+      </p>
+    </div>
+
+    <div>
+      <p class="font-display font-bold text-lg text-zinc-900 dark:text-white">
+
+      </p>
+    </div>
+  </div>
+
+</div>
+      </div>
+
+<div class="pf w-full h-full rounded-3xl overflow-hidden">
+  <img
+    src="/images/profile.jpg"
+    alt="Profile"
+    loading="eager"
+    class="w-full h-full object-contain"
+  >
+</div>
+
+    </div>
+  </div>
+</section>
+<!-- ═══ ABOUT ═══ -->
+<section id="about" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <div class="reveal order-2 md:order-1">
+        <div class="pf w-full aspect-square max-w-sm mx-auto rounded-3xl">
+          <img src="/images/uin.jpg" alt="Eliott" loading="lazy">
+        </div>
+      </div>
+
+ <div class="order-1 md:order-2">
+
+    <h2 class="font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">
+    Educational <span class="text-orange-500">Background</span>
+</h2> <br>
+
+    <p class="reveal d2 text-zinc-500 dark:text-zinc-400 leading-relaxed mb-10">
+        My academic journey has equipped me with strong analytical, communication, and problem-solving skills. Throughout my studies, I developed a solid foundation in international relations and gained experience in research and critical thinking.
+    </p>
+
+    <!-- Timeline -->
+    <div class="space-y-6">
+
+        <!-- University -->
+        <div class="reveal d3 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 hover:border-accent transition duration-300">
+
+            <div class="flex items-start justify-between flex-wrap gap-3">
+                <div>
+                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-white">
+                        UIN Syarif Hidayatullah Jakarta
+                    </h3>
+
+                    <p class="text-accent font-medium mt-1">
+                        Bachelor's Degree in International Relations
+                    </p>
+
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">
+                        Focused on global politics, diplomacy, international cooperation, and cross-cultural communication.
+                    </p>
+                </div>
+
+                <span class="px-4 py-1 rounded-full bg-zinc-100 dark:bg-zinc-700 text-sm text-zinc-600 dark:text-zinc-300">
+                    University
+                </span>
+            </div>
+
+        </div>
+
+        <!-- High School -->
+        <div class="reveal d4 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl p-6 hover:border-accent transition duration-300">
+
+            <div class="flex items-start justify-between flex-wrap gap-3">
+                <div>
+                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-white">
+                        MAN 4 Jakarta
+                    </h3>
+
+                    <p class="text-accent font-medium mt-1">
+                        Senior High School
+                    </p>
+
+                    <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-2">
+                        Completed secondary education while building a strong academic foundation and developing leadership and teamwork skills.
+                    </p>
+                </div>
+
+                <span class="px-4 py-1 rounded-full bg-zinc-100 dark:bg-zinc-700 text-sm text-zinc-600 dark:text-zinc-300">
+                    High School
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </div>
+  </div>
+</section>
+<!-- ═══ SERVICES ═══ -->
+<section id="services" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Heading -->
+    <div class="mb-14">
+      <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">
+        Professional <span class="text-orange-500" > Skills </span>
+      </h2>
+    </div>
+
+<section id="services" class="py-24 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Horizontal Scroll -->
+    <div class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4">
+
+      <!-- Skill 1 -->
+      <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+          🌐
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">
+          International Cooperation & Administrative Support
+        </h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Supporting international partnerships, coordinating administrative processes, and facilitating collaboration between institutions and stakeholders.
+        </p>
+      </article>
+
+      <!-- Skill 2 -->
+      <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+          📄
+        </div>
+        <h3 class="font-display font-bold text-xl text-white mb-3">
+          Document Management & Report Writing
+        </h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Experienced in managing official documents, preparing reports, maintaining records, and ensuring administrative accuracy.
+        </p>
+      </article>
+
+      <!-- Skill 3 -->
+      <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+          📅
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">
+          Event Planning, Social Program & Coordination
+        </h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Planning and coordinating events, community programs, and institutional activities while ensuring smooth implementation.
+        </p>
+      </article>
+
+      <!-- Skill 4 -->
+      <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+          🤝
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">
+          Public Relations & Communication
+        </h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Building positive relationships with stakeholders through effective communication, networking, and public engagement.
+        </p>
+      </article>
+
+      <!-- Skill 5 -->
+      <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+          📱
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">
+          Social Media Management & Content Creation
+        </h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Creating engaging content, managing social media platforms, and supporting digital communication strategies.
+        </p>
+      </article>
+
+      <!-- Skill 6 -->
+      <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+        <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+          🌍
+        </div>
+        <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">
+          Languages
+        </h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          Indonesian (Native) and English (Professional Working Proficiency).
+        </p>
+      </article>
+        <!-- Skill 7 -->
+        <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+          <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+            📊
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-3">
+            Microsoft Office Suite
+          </h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Proficient in Microsoft Word, Excel, and PowerPoint for document preparation, data organization, reporting, and professional presentations.
+          </p>
+        </article>
+
+        <!-- Skill 8 -->
+        <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+          <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+            🎨
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-3">
+            Canva & Visual Design
+          </h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Creating visually appealing presentations and promotional materials using Canva to support communication and branding needs.
+          </p>
+        </article>
+
+        <!-- Skill 9 -->
+        <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+          <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+            🗂️
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-3">
+            Office Administration & Records Management
+          </h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Experienced in office administration, document handling, records management, and maintaining organized filing systems.
+          </p>
+        </article>
+
+        <!-- Skill 10 -->
+        <article class="reveal d2 shrink-0 w-80 snap-start group bg-zinc-900 dark:bg-zinc-800 rounded-2xl p-8 border border-zinc-800 hover:border-accent transition-all">
+          <div class="w-12 h-12 flex items-center justify-center bg-zinc-800 dark:bg-zinc-700 rounded-xl mb-6 text-2xl">
+            🤝
+          </div>
+          <h3 class="font-display font-bold text-xl text-white mb-3">
+            Communication & Teamwork
+          </h3>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Strong interpersonal skills with the ability to communicate effectively, collaborate with teams, and build positive working relationships.
+          </p>
+        </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ WORK ═══ -->
+<section id="work" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="bg-zinc-100 dark:bg-zinc-900/60 rounded-[3rem] p-8 md:p-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+      <div>
+        <!-- <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Portfolio</p> -->
+        <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Internship <span class="text-orange-500">Experience</span></h2>
+      </div>
+
+<a href="internship-exp.html"
+   class="reveal d1 inline-flex items-center gap-2
+          bg-orange-500 text-white
+          px-6 py-3 rounded-full
+          text-sm font-medium
+          shadow-lg shadow-orange-500/20
+          hover:bg-orange-600
+          hover:shadow-orange-500/40
+          hover:-translate-y-1
+          transition-all duration-300">
+
+    See Full Internship Experience
+
+    <svg class="w-4 h-4"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+</a>
+
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+        <div class="pf w-full h-64 md:h-80">
+          <img src="/images/bron.png" alt="Novu SaaS Dashboard" loading="lazy">
+        </div>
+        <div class="p-7">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Bilateral 2 Asia Pasifik </span>
+            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">February 2025 – March 2025</span>
+          </div>
+          <a href="case-study.html">
+            <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">National Research and Innovation Agency of Indonesia (BRIN)</h3>
+          </a>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">Supported the administration and management of international cooperation documents, including Memorandums of Understanding (MoUs), Memorandums of Agreement (MoAs), and Implementation Arrangements (IAs) related to Asia-Pacific partnerships. <br><br>Participated in the coordination and implementation of bilateral cooperation meetings, including preparing meeting materials and taking meeting minutes.<br><br>Assisted in the preparation, preliminary review, and filing of legal documents for international cooperation agreements.</p>
+        </div>
+      </article>
+
+<article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+  <div class="pf w-full h-64 md:h-80">
+    <img src="/images/jepun.jpg" alt="International Community Program - Japan" loading="lazy">
+  </div>
+
+  <div class="p-7">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        Program Support Staff
+      </span>
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        Agust 2025 – September 2025
+      </span>
+    </div>
+
+
+    <a href="case-study.html">
+      <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">
+        International Community Program – Koga, Ibaraki, Japan
+      </h3>
+    </a>
+
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+      Contributed to the implementation of programs supporting the Indonesian diaspora community in Ibaraki, Japan.
+      <br><br>
+
+      Assisted in coordinating social initiatives and collaborating with local partners to ensure the smooth execution of community activities.
+      <br><br>
+
+      Engaged in cross-cultural communication and provided operational support for various community events and programs.
+      <br><br>
+
+      Prepared, organized, and maintained program documentation and reports to support effective administration and record management.
+    </p>
+
+  </div>
+</article>
+
+        </div>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="work" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="bg-zinc-100 dark:bg-zinc-900/60 rounded-[3rem] p-8 md:p-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+      <div>
+        <!-- <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Portfolio</p> -->
+        <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Organizational <span class="text-orange-500">Experience</span></h2>
+      </div>
+      <a href="organizational-exp.html"
+   class="reveal d1 inline-flex items-center gap-2
+          bg-orange-500 text-white
+          px-6 py-3 rounded-full
+          text-sm font-medium
+          shadow-lg shadow-orange-500/20
+          hover:bg-orange-600
+          hover:shadow-orange-500/40
+          hover:-translate-y-1
+          transition-all duration-300">
+
+    See Full Organizational Experience
+
+    <svg class="w-4 h-4"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+</a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+<article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+  <div class="pf w-full h-64 md:h-80">
+    <img src="/images/himahii.png" alt="HIMAHI UIN Jakarta" loading="lazy">
+  </div>
+
+  <div class="p-7">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        Secretary of the Design & Social Media Division (Two Terms)
+      </span>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        January 2023 – December 2025
+      </span>
+    </div>
+
+    <a href="case-study.html">
+      <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">
+        HIMAHI (International Relations Student Association) – Faculty of Social and Political Sciences, UIN Syarif Hidayatullah Jakarta
+      </h3>
+    </a>
+
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+
+      Responsible for designing visual content to support the promotion and publication of HIMAHI events and activities.
+      <br><br>
+
+      Managed the organization's social media platforms, including content planning, graphic design, and content publishing.
+      <br><br>
+
+      Supported the organization's digital communication strategy to enhance audience engagement and strengthen its online presence.
+    </p>
+
+  </div>
+</article>
+
+<article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+  <div class="pf w-full h-64 md:h-80">
+    <img src="/images/homefor.png" alt="HOME FOR US Community Organization" loading="lazy">
+  </div>
+
+  <div class="p-7">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        Secretary
+      </span>
+
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        December 2024 - October 2024
+      </span>
+    </div>
+
+    <a href="case-study.html">
+      <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">
+        HOME FOR US – Community-Based Social Organization
+      </h3>
+    </a>
+
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+      Managed organizational administration and maintained records to ensure accurate documentation and efficient information management.
+      <br><br>
+
+      Prepared meeting minutes, activity schedules, and internal reports to support organizational operations and communication.
+      <br><br>
+
+      Assisted in the planning and implementation of social programs and community initiatives, contributing to the successful execution of organizational activities.
+    </p>
+
+  </div>
+</article>
+
+        </div>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="work" class="py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="bg-zinc-100 dark:bg-zinc-900/60 rounded-[3rem] p-8 md:p-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-14">
+      <div>
+        <!-- <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Portfolio</p> -->
+        <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Other <span class="text-orange-500">Experience</span></h2>
+      </div>
+      <a href="other-exp.html"
+   class="reveal d1 inline-flex items-center gap-2
+          bg-orange-500 text-white
+          px-6 py-3 rounded-full
+          text-sm font-medium
+          shadow-lg shadow-orange-500/20
+          hover:bg-orange-600
+          hover:shadow-orange-500/40
+          hover:-translate-y-1
+          transition-all duration-300">
+
+    See Other Experience
+
+    <svg class="w-4 h-4"
+         fill="none"
+         viewBox="0 0 24 24"
+         stroke="currentColor">
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+    </svg>
+</a>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+
+<article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+  <div class="pf w-full h-64 md:h-80">
+    <img src="/images/idf.png" alt="Indonesian Dance Festival" loading="lazy">
+  </div>
+
+  <div class="p-7">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        Usher Division
+      </span>
+
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        November 2024
+      </span>
+    </div>
+
+    <a href="case-study.html">
+      <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">
+        Indonesian Dance Festival (IDF)
+      </h3>
+    </a>
+
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+      Welcomed and assisted guests throughout the event, ensuring a friendly and professional first impression.
+      <br><br>
+
+      Provided visitors with clear information regarding event schedules, venue layouts, and program activities to enhance the overall attendee experience.
+      <br><br>
+
+      Coordinated with the event team in managing seating arrangements and guest flow to ensure the smooth and orderly execution of the festival.
+    </p>
+
+  </div>
+</article>
+
+<article class="card-h reveal d1 group rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent md:row-span-2">
+  <div class="pf w-full h-64 md:h-80">
+    <img src="/images/fisip.png" alt="FISIP Days UIN Jakarta" loading="lazy">
+  </div>
+
+  <div class="p-7">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        Liaison Officer (LO) Division
+      </span>
+
+      <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">
+        November 2024 - December 2024
+      </span>
+    </div>
+
+    <a href="case-study.html">
+      <h3 class="font-display font-bold text-2xl text-zinc-900 dark:text-white mb-2">
+        FISIP Days – Faculty of Social and Political Sciences, UIN Syarif Hidayatullah Jakarta
+      </h3>
+    </a>
+
+    <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5">
+      Served as the primary point of contact between the organizing committee, participants, and speakers to ensure effective communication throughout the event.
+      <br><br>
+
+      Coordinated schedules, technical arrangements, and speaker requirements to support the successful execution of event activities.
+      <br><br>
+
+      Assisted with participant registration and provided information regarding event schedules, programs, and logistics to enhance the attendee experience.
+    </p>
+
+  </div>
+</article>
+
+        </div>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- ═══ CERTIFICATES ═══ -->
+<section id="reviews" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-14 text-center">
+      <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Here's My <span class="text-orange-500">Certificate & Certifications</span></h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Certificate 1: BRIN Internship -->
+      <article class="card-h reveal d1 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">Internship</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">Bureau of Law and Cooperation, National Research and Innovation Agency (BRIN)</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">National Research and Innovation Agency of Indonesia — Bilateral Asia Pacific Internship Program.</p>
+        <a href="data/sertifikat/Sertifikat%20Magang%20BRIN.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Certificate 2: KKN Jepang -->
+      <article class="card-h reveal d2 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">International Program</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">Sertifikat KKN Jepang</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">International Community Program in Koga, Ibaraki, Japan — Cross-cultural community service.</p>
+        <a href="data/sertifikat/Sertifikat%20KKN%20Jepang.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Certificate 3: HIMAHI -->
+      <article class="card-h reveal d3 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">Organization</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">Sertifikat HIMAHI</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">International Relations Student Association — UIN Syarif Hidayatullah Jakarta.</p>
+        <a href="data/sertifikat/Sertifikat%20HIMAHI.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Certificate 4: ETIC -->
+      <article class="card-h reveal d1 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l9-5-9-5-9 5 9 5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">Event / Training</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">Sertifikat ETIC</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">Participation certificate from the ETIC academic program / event.</p>
+        <a href="data/sertifikat/Sertifikat%20ETIC.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Certificate 5: IR Cultural Fair -->
+      <article class="card-h reveal d2 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">Event · 2024</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">International Relations Cultural Fair</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">Certificate from the International Relations Cultural Fair 2024 event.</p>
+        <a href="data/sertifikat/Sertifikat_International_Relations_Cultural_Fair_2024.png" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Certificate 6: Volunteer -->
+      <article class="card-h reveal d3 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 016.364 0L12 7.636l1.318-1.318a4.5 4.5 0 116.364 6.364L12 20.364l-7.682-7.682a4.5 4.5 0 010-6.364z"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">Volunteer</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">Certificate Indonesian Dance Festival</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">Recognition for active participation as a volunteer in community-based programs.</p>
+        <a href="data/sertifikat/Volunteer_Vidia.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Certificate 7: ISDS APEC -->
+      <article class="card-h reveal d1 group bg-white dark:bg-zinc-900 rounded-2xl p-7 border border-zinc-100 dark:border-zinc-800 hover:border-accent flex flex-col items-center text-center sm:col-span-2 lg:col-span-1">
+        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 text-accent rounded-xl mb-5">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3h6l4 4v10a2 2 0 01-2 2H9a2 2 0 01-2-2V5a2 2 0 012-2z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10 12l2 2 4-4"/></svg>
+        </div>
+        <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full mb-3">Competition · 2025</span>
+        <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-1.5 group-hover:text-accent transition-colors">IG Reels Competition — ISDS APEC 2025</h3>
+        <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 flex-1">Participant of the Instagram Reels Competition organized by ISDS in conjunction with APEC 2025.</p>
+        <a href="data/sertifikat/e-Sertifikat%20Peserta%20Lomba%20IG%20Reels%20ISDS%20-%20APEC%202025%20-%20Vidia%20Cahya%20Mevlevi.pdf" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-accent text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-accent-light transition-colors">
+          View Certificate
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CURRICULUM VITAE ═══ -->
+<section id="blog" class="py-24 bg-zinc-50 dark:bg-zinc-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="mb-14 text-center">
+      <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-zinc-900 dark:text-white">Here's My <span class="text-orange-500">Curriculum Vitae</span></h2>
+    </div>
+
+    <div class="max-w-xl mx-auto">
+      <article class="reveal d1 card-h group bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+        <div class="flex flex-col items-center text-center gap-2 p-8 md:p-10">
+
+          <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-1">Vidia Cahya Mevlevi — CV</h3>
+          <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-5 max-w-md">Download my full curriculum vitae in PDF format for a complete overview of my education, experience, and skills.</p>
+          <a href="data/cv/CV%20Vidia%20Cahya%20Mevlevi_Lama.pdf" target="_blank"
+             class="shimmer inline-flex items-center gap-2 bg-accent text-white text-sm font-medium px-6 py-3 rounded-full hover:bg-accent-light transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Download CV (PDF)
+          </a>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOCIAL MEDIA ═══ -->
+<section id="contact" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-16 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative z-10">
+
+        <!-- Heading -->
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <p class="reveal text-xs font-medium text-accent tracking-widest uppercase mb-3">Let's connect</p>
+          <h2 class="reveal d1 font-display font-bold text-4xl md:text-5xl text-white leading-tight mb-5">Social <span class="text-accent">Media</span></h2>
+          <p class="reveal d2 text-zinc-400 leading-relaxed">Feel free to reach out or follow my journey. I'm always happy to connect, collaborate, and discuss new opportunities.</p>
+        </div>
+
+        <!-- Social cards -->
+        <div class="reveal d3 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+
+          <!-- Email -->
+          <a href="mailto:vidiaacahya@gmail.com"
+             class="card-h group flex flex-col items-center text-center gap-3 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700 hover:border-accent rounded-2xl p-6 transition-colors">
+            <span class="w-12 h-12 flex items-center justify-center bg-zinc-900 rounded-xl text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </span>
+            <span class="font-medium text-sm text-white">Email</span>
+            <span class="text-xs text-zinc-400 break-all">vidiaacahya@gmail.com</span>
+          </a>
+
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/vidiacahyamevlevi/" rel="noopener noreferrer" target="_blank"
+             class="card-h group flex flex-col items-center text-center gap-3 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700 hover:border-accent rounded-2xl p-6 transition-colors">
+            <span class="w-12 h-12 flex items-center justify-center bg-zinc-900 rounded-xl text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </span>
+            <span class="font-medium text-sm text-white">LinkedIn</span>
+            <span class="text-xs text-zinc-400">Vidia Cahya Mevlevi</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/vidiaacahya" rel="noopener noreferrer" target="_blank"
+             class="card-h group flex flex-col items-center text-center gap-3 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700 hover:border-accent rounded-2xl p-6 transition-colors">
+            <span class="w-12 h-12 flex items-center justify-center bg-zinc-900 rounded-xl text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </span>
+            <span class="font-medium text-sm text-white">Instagram</span>
+            <span class="text-xs text-zinc-400">@vidiaacahya</span>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/62089503917651" rel="noopener noreferrer" target="_blank"
+             class="card-h group flex flex-col items-center text-center gap-3 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700 hover:border-accent rounded-2xl p-6 transition-colors">
+            <span class="w-12 h-12 flex items-center justify-center bg-zinc-900 rounded-xl text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            </span>
+            <span class="font-medium text-sm text-white">WhatsApp</span>
+            <span class="text-xs text-zinc-400">Contact via WhatsApp</span>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-zinc-100 dark:border-zinc-900">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-zinc-400">© <span id="yr"></span> NusaTek. All rights reserved.
+    <p class="text-xs text-zinc-500">Built with
+      <a href="https://tailwindcss.com" rel="noopener noreferrer" target="_blank" class="hover:text-accent transition-colors">Designed by Team NusaTek</a>
+      &amp;
+      <a href="https://alpinejs.dev" rel="noopener noreferrer" target="_blank" class="hover:text-accent transition-colors">Distributed to Customer</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+function app() {
+  return {
+    mm: false,
+    sc: false,
+    s: 'hero',
+
+    init() {
+      // scroll
+      window.addEventListener('scroll', () => {
+        this.sc = window.scrollY > 20;
+        this.updateSection();
+      }, { passive: true });
+
+      // reveal
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      // year
+      document.getElementById('yr').textContent = new Date().getFullYear();
+    },
+
+    updateSection() {
+      const atBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 60;
+      if (atBottom) { this.s = 'contact'; return; }
+      const ids = ['contact','blog','reviews','about','work','services','hero'];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 130) { this.s = id; return; }
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>

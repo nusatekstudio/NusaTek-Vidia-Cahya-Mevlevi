@@ -1,0 +1,860 @@
+<!doctype html>
+<html
+    lang="en"
+    x-data="projects()"
+    x-init="init()"
+    class="scroll-smooth dark"
+>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portofolio Vidia Cahya Mevlevi</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            display: ["PT Sans", "sans-serif"],
+                            body: ["DM Sans", "sans-serif"],
+                        },
+                        colors: {
+                            accent: "#FF6B2B",
+                            "accent-light": "#FF8F5C",
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+            html {
+                font-family: "DM Sans", sans-serif;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: "PT Sans", sans-serif;
+            }
+            .reveal {
+                opacity: 0;
+                transform: translateY(22px);
+                transition:
+                    opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .reveal.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .nav-link {
+                position: relative;
+            }
+            .nav-link::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1.5px;
+                background: currentColor;
+                transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .nav-link:hover::after {
+                width: 100%;
+            }
+            ::-webkit-scrollbar {
+                width: 5px;
+            }
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            ::-webkit-scrollbar-thumb {
+                background: #ff6b2b;
+                border-radius: 99px;
+            }
+            body {
+                transition:
+                    background-color 0.3s,
+                    color 0.3s;
+            }
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+                pointer-events: none;
+                z-index: 0;
+                opacity: 0.4;
+            }
+            .btn-primary {
+                position: relative;
+                overflow: hidden;
+            }
+            .btn-primary::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 60%;
+                height: 100%;
+                background: rgba(255, 255, 255, 0.18);
+                transform: skewX(-20deg);
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .btn-primary:hover::after {
+                left: 160%;
+            }
+            [x-cloak] {
+                display: none !important;
+            }
+            .photo-frame {
+                position: relative;
+                overflow: hidden;
+                background: #e4e4e7;
+            }
+            .photo-frame img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .project-card {
+                transition:
+                    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    border-color 0.2s;
+            }
+            .project-card:hover {
+                transform: translateY(-4px);
+            }
+        </style>
+    </head>
+    <body
+        class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body antialiased"
+    >
+        <header
+            class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+            :class="scrolled?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':'bg-transparent'"
+        >
+            <nav
+                class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+            >
+                <a
+                    href="index.html"
+                    class="font-display font-bold text-xl tracking-tight z-10"
+                >
+                    <span class="text-zinc-900 dark:text-white"
+                        >Portofolio </span
+                    ><span class="text-accent">Vidya Cahya Mevlevi</span>
+                </a>
+                <ul
+                    class="hidden md:flex items-center gap-8 text-sm"
+                    role="list"
+                >
+                    <li>
+                        <a
+                            href="index.html#about"
+                            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                            >Education</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#services"
+                            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                            >Skills</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#work"
+                            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                            >Experience</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#reviews"
+                            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                            >Certifications</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#blog"
+                            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                            >Curriculum Vitae</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#contact"
+                            class="nl text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                            >Social Media</a
+                        >
+                    </li>
+                </ul>
+                <div class="flex items-center gap-3">
+                    <a
+                        href="index.html#contact"
+                        class="hidden md:inline-flex items-center gap-2 btn-primary bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors"
+                        >Hire me &rarr;</a
+                    >
+                    <button
+                        @click="mobileMenu=!mobileMenu"
+                        class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800"
+                        aria-label="Toggle menu"
+                    >
+                        <svg
+                            x-show="!mobileMenu"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                        <svg
+                            x-show="mobileMenu"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <div
+                x-show="mobileMenu"
+                x-cloak
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-2"
+                class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900"
+            >
+                <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+                    <li>
+                        <a
+                            href="index.html#services"
+                            @click="mobileMenu=false"
+                            class="block text-zinc-700 dark:text-zinc-300"
+                            >Services</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="projects.html"
+                            class="block text-accent font-medium"
+                            >Work</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#about"
+                            @click="mobileMenu=false"
+                            class="block text-zinc-700 dark:text-zinc-300"
+                            >About</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="blog.html"
+                            @click="mobileMenu=false"
+                            class="block text-zinc-700 dark:text-zinc-300"
+                            >Blog</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="index.html#contact"
+                            @click="mobileMenu=false"
+                            class="block text-zinc-700 dark:text-zinc-300"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <section class="pb-24 mt-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <a
+                        href="index.html"
+                        class="group inline-flex items-center gap-2 bg-accent text-white font-medium text-sm pl-3 pr-4 py-3 rounded-full shadow-lg shadow-black/30 hover:bg-accent-light transition-colors mb-6"
+                        aria-label="Back to Home"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 transition-transform group-hover:-translate-x-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Home
+                    </a>
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    Indonesian Dance Festival (IDF)
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Welcomed and assisted guests throughout the event to create a friendly and professional first impression.
+                                    Provided clear information regarding the event schedule, venue layout, and programme of activities to visitors.
+                                    Coordinated with the event team on seating arrangements and guest flow to ensure the event ran smoothly and in an orderly manner.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Usher Division (November 2024)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in idfPhotos" :key="p.id">
+                            <div>
+                                <article
+                                    class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="lightbox = p"
+                                        class="block photo-frame w-full aspect-[3/4] cursor-zoom-in"
+                                        :aria-label="'View ' + p.title + ' fullscreen'"
+                                    >
+                                        <img
+                                            :src="p.img"
+                                            :alt="p.title"
+                                            loading="lazy"
+                                        />
+                                    </button>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    International Relations Cultural Fair 2023 – Faculty of Social and Political Sciences, UIN Jakarta
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Managed social media content design planning for the International Relations Cultural Fair.
+                                    Prepared the Instagram content timeline for the @irculturalfair account.
+                                    Carried out documentation throughout the event.
+                                    Developed marketing strategies to support event promotion.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Design and Social Media Division (March 2023 – April 2023)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in icf2023Photos" :key="p.id">
+                            <div>
+                                <article
+                                    class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="lightbox = p"
+                                        class="block photo-frame w-full aspect-[3/4] cursor-zoom-in"
+                                        :aria-label="'View ' + p.title + ' fullscreen'"
+                                    >
+                                        <img
+                                            :src="p.img"
+                                            :alt="p.title"
+                                            loading="lazy"
+                                        />
+                                    </button>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    International Relations Cultural Fair 2024 – Faculty of Social and Political Sciences, UIN Jakarta
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Developed and executed event marketing strategies to increase audience reach and participation.
+                                    Managed promotional content and digital publications as part of the event marketing campaign.
+                                    Coordinated with internal teams and related divisions to ensure promotional strategies were executed effectively and on time.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Marketing Division (June 2024 – September 2024)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in icf2024Photos" :key="p.id">
+                            <div>
+                                <article
+                                    class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="lightbox = p"
+                                        class="block photo-frame w-full aspect-[3/4] cursor-zoom-in"
+                                        :aria-label="'View ' + p.title + ' fullscreen'"
+                                    >
+                                        <img
+                                            :src="p.img"
+                                            :alt="p.title"
+                                            loading="lazy"
+                                        />
+                                    </button>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    FISIP Days – Faculty of Social and Political Sciences, UIN Jakarta
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Served as the main liaison between the committee, participants, and speakers.
+                                    Coordinated schedules, technical requirements, and speaker needs.
+                                    Assisted with the registration process and provided event information to participants.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Liaison Officer (LO) Division (November 2024 – December 2024)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in fisipDaysPhotos" :key="p.id">
+                            <div>
+                                <article
+                                    class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="lightbox = p"
+                                        class="block photo-frame w-full aspect-[3/4] cursor-zoom-in"
+                                        :aria-label="'View ' + p.title + ' fullscreen'"
+                                    >
+                                        <img
+                                            :src="p.img"
+                                            :alt="p.title"
+                                            loading="lazy"
+                                        />
+                                    </button>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    Interfest – Faculty of Social and Political Sciences, UIN Jakarta
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Planned the event theme, objectives, and concept in line with the intended targets.
+                                    Determined the date, time, and venue of the event, and arranged the schedule for the entire series of activities, sessions, and presentations.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Event Planner – Ambassador of International Relations (August 2024 – October 2024)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div
+                        class="bg-zinc-900 dark:bg-zinc-800 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden"
+                    >
+                        <div
+                            class="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl pointer-events-none"
+                        ></div>
+                        <div
+                            class="absolute bottom-0 left-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl pointer-events-none"
+                        ></div>
+                        <div class="relative z-10">
+                            <div class="w-fit mx-auto">
+                                <h2
+                                    class="font-display font-bold text-3xl md:text-4xl text-white mb-4"
+                                >
+                                    Yayasan Sayap Ibu – Bintaro
+                                </h2>
+                                <p class="text-zinc-400 mb-8 text-justify w-0 min-w-full">
+                                    Assisted with social activities and mentoring of children under the foundation's care.
+                                    Participated in educational activities and character development for children with disabilities.
+                                    Supported the operational needs of the foundation's activities as required in the field.
+                                </p>
+                            </div>
+                            <a
+                                href=""
+                                class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors"
+                                >Volunteer (December 2024)</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pb-24">
+                <div class="max-w-6xl mx-auto px-6">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <template x-for="p in sayapIbuPhotos" :key="p.id">
+                            <div>
+                                <article
+                                    class="project-card group h-full flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
+                                >
+                                    <button
+                                        type="button"
+                                        @click="lightbox = p"
+                                        class="block photo-frame w-full aspect-[3/4] cursor-zoom-in"
+                                        :aria-label="'View ' + p.title + ' fullscreen'"
+                                    >
+                                        <img
+                                            :src="p.img"
+                                            :alt="p.title"
+                                            loading="lazy"
+                                        />
+                                    </button>
+                                </article>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div
+            x-show="lightbox"
+            x-cloak
+            @keydown.escape.window="lightbox = null"
+            @click.self="lightbox = null"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 md:p-8"
+        >
+            <button
+                type="button"
+                @click="lightbox = null"
+                class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-accent transition-colors"
+                aria-label="Close fullscreen image"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+            </button>
+            <img
+                x-show="lightbox"
+                :src="lightbox?.img"
+                :alt="lightbox?.title"
+                class="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+        </div>
+
+        <footer class="border-t border-zinc-100 dark:border-zinc-900">
+            <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <p class="text-sm text-zinc-400">
+                    &copy; <span id="year"></span> NusaTek. All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            function projects() {
+                return {
+                    scrolled: false,
+                    mobileMenu: false,
+                    lightbox: null,
+
+                    idfPhotos: [
+                        "55E817C9-9180-4C98-B692-65C36592AD42",
+                        "IMG_7856",
+                        "IMG_7861",
+                        "IMG_7863",
+                        "IMG_7864",
+                        "IMG_7867",
+                        "IMG_7909",
+                        "IMG_7932",
+                        "IMG_8272",
+                        "IMG_8298",
+                        "IMG_8301",
+                        "IMG_8346",
+                        "IMG_8349",
+                        "IMG_8353",
+                        "IMG_8379",
+                        "IMG_8385",
+                        "IMG_8443",
+                        "IMG_8448",
+                        "IMG_8449",
+                        "IMG_8524",
+                    ].map((f, i) => ({
+                        id: 100 + i,
+                        title: "Indonesian Dance Festival (IDF)",
+                        img: "images/IDF/web/" + f + ".jpg",
+                    })),
+
+                    icf2023Photos: [
+                        "IMG_3111",
+                        "IMG_3112",
+                        "IMG_3114",
+                        "IMG_3115",
+                        "IMG_3116",
+                    ].map((f, i) => ({
+                        id: 200 + i,
+                        title: "International Relations Cultural Fair 2023 – Faculty of Social and Political Sciences, UIN Jakarta",
+                        img: "images/ICF 2023/web/" + f + ".jpg",
+                    })),
+
+                    icf2024Photos: [
+                        "175e4ba3-98b6-4c3a-ba76-bfad09cda7d2",
+                        "9aa42c41-6e3a-4407-b24e-392615d92249",
+                        "9D957C6E-51CB-4D61-9259-8A710DB2A900",
+                        "a8ce8d98-9fa4-4336-b02d-28726548fd29",
+                        "IMG_5844",
+                        "IMG_5850",
+                        "IMG_5851",
+                        "IMG_5885",
+                        "IMG_5891",
+                        "IMG_5925",
+                        "IMG_5984",
+                    ].map((f, i) => ({
+                        id: 300 + i,
+                        title: "International Relations Cultural Fair 2024 – Faculty of Social and Political Sciences, UIN Jakarta",
+                        img: "images/ICF 2024/web/" + f + ".jpg",
+                    })),
+
+                    fisipDaysPhotos: [
+                        "1B9F2500-1564-4208-AB08-F45A7236D06D-25835-0000091E53B98BAA",
+                        "21331EAA-8218-4BD0-8743-AB2425939918-25835-0000091ED0ED08E0",
+                        "53628CFC-A5A4-438F-A333-F30567B04077",
+                        "5E9D4DE3-A75D-494C-8763-D51B6E782ABF-25835-0000091DE3B0CE16",
+                        "7A9C25A1-A412-4267-B1FA-300CF7FCC30D-25835-0000091C8C1323CF",
+                        "8A187C32-A722-4B82-84C5-DEC4FE498782",
+                        "F26600ED-F6A0-4510-9920-6061BDB5B835-25835-0000091C9332F3AE",
+                        "IMG_0090",
+                        "IMG_0107",
+                        "IMG_0120",
+                        "IMG_0731",
+                        "IMG_0751",
+                        "IMG_0756",
+                    ].map((f, i) => ({
+                        id: 400 + i,
+                        title: "FISIP Days – Faculty of Social and Political Sciences, UIN Jakarta",
+                        img: "images/fisip days/web/" + f + ".jpg",
+                    })),
+
+                    sayapIbuPhotos: [
+                        "_DSC2637",
+                        "_DSC2644",
+                        "IMG_0580",
+                        "IMG_0586",
+                        "IMG_0605",
+                        "IMG_0633",
+                        "IMG_0644",
+                        "IMG_0655",
+                        "IMG_0704",
+                    ].map((f, i) => ({
+                        id: 500 + i,
+                        title: "Yayasan Sayap Ibu – Bintaro",
+                        img: "images/yayasan sayap ibu/web/" + f + ".jpg",
+                    })),
+
+                    init() {
+                        window.addEventListener(
+                            "scroll",
+                            () => {
+                                this.scrolled = window.scrollY > 20;
+                            },
+                            { passive: true },
+                        );
+
+                        this.$nextTick(() => {
+                            const obs = new IntersectionObserver(
+                                (entries) => {
+                                    entries.forEach((e) => {
+                                        if (e.isIntersecting) {
+                                            e.target.classList.add("visible");
+                                            obs.unobserve(e.target);
+                                        }
+                                    });
+                                },
+                                {
+                                    threshold: 0.08,
+                                    rootMargin: "0px 0px -30px 0px",
+                                },
+                            );
+                            document
+                                .querySelectorAll(".reveal")
+                                .forEach((el) => obs.observe(el));
+                        });
+                    },
+                };
+            }
+
+            document.getElementById("year").textContent =
+                new Date().getFullYear();
+        </script>
+    </body>
+</html>
